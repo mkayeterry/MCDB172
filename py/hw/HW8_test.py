@@ -1,119 +1,63 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+from math import sin
 
-# define parameters
-alpha = 0.4
-tau_inf = 0.1
-tau_imm = 3
-N = 100
+def ImperfectImmunity(state, t):
+    # alpha = a * (np.sin(t) + 1)
+    I = state[0]
+    S = state[1]
+
+    dIdt = np.zeros(t.size)
+    dSdt = np.zeros(t.size)
+
+    for I_idx, i in enumerate(I):
+            for S_idx, s in enumerate(S):
+                dIdt[I_idx] = alpha * i * s - i/tau
+                R = N - i - s
+                dSdt[S_idx] = -alpha * i * s + R/tau2
+
+    return(dIdt, dSdt)
+
+def Rt(N, It, St):
+    Nvec = N * np.ones(St.shape)
+    return (Nvec - St - It)
 
 # nullcline function
-def get_nullclines(S, I):
-
-    for i in np.where(tau_inf * alpha * S != 0):
-        I_nullcline = 1 / (tau_inf * alpha * S)
-        S_nullcline = (N - I) / (tau_imm * alpha)
-        return (S_nullcline, I_nullcline)
-
-# define axis ranges
-I_range = np.arange(0, 100)
-S_range = np.arange(0, 100)
-
-# meshgrid for phase diagram
-I_grid, S_grid = np.meshgrid(I_range, S_range)
-
-# calculate derivatives
-dI_dt = alpha * I_grid * S_grid - (I_grid / tau_inf)
-R = (N - I_grid - S_grid)
-dS_dt = -alpha * I_grid * S_grid + R / tau_imm
-
-# plot phase space diagram
-fig, ax = plt.subplots(figsize=(8, 8))
-ax.quiver(I_grid, S_grid, dI_dt, dS_dt, color='#440154')
-ax.plot(I_range, get_nullclines(S_range, I_range)[1], linewidth = 5, label='I-nullcline', color='#5ec962')
-ax.plot(I_range, get_nullclines(S_range, I_range)[0], linewidth = 5, label='S-nullcline', color='#3b528b')
-ax.set_xlabel('dIdt', fontsize =15)
-ax.set_ylabel('dSdt', fontsize =15)
-ax.set_xlim(0, 100)
-ax.set_ylim(0, 100)
-ax.legend()
-plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-# define parameters
-alpha = 0.4
-tau_inf = 0.1
-tau_imm = 3
-N = 100
-
-# nullcline functions
-def get_nullclines(S, I):
-    I_nullcline = 1 / (alpha * tau_inf)
-    S_nullcline = tau_inf * (N - 1 / (alpha * tau_inf)) / (tau_imm + tau_inf)
+def get_nullclines():
+    # alpha = a * (np.sin(t) + 1)
+    I_nullcline = 1 / (alpha * tau)
+    S_nullcline = tau * (N - 1 / (alpha * tau)) / (tau2 + tau)
     return (S_nullcline, I_nullcline)
 
-# define axis ranges
-I_range = np.linspace(0, 100, 100)
-S_range = np.linspace(0, 100, 100)
+# define parameters
+# alpha = 0.4
+tau = .1
+tau2 = 3
+state0 = [1,99]
+N = np.sum(state0)
+t = np.linspace(0, 10, 1000)
+alpha = np.zeros(t.size)
+for i, v in enumerate(t):
+    alpha[i] = .4 * (sin(v) + 1)
 
-# meshgrid for phase diagram
-I_grid, S_grid = np.meshgrid(I_range, S_range)
 
-# calculate derivatives
-dI_dt = alpha * I_grid * S_grid - (I_grid / tau_inf)
-R = (N - I_grid - S_grid)
-dS_dt = -alpha * I_grid * S_grid + R / tau_imm
+state = odeint(ImperfectImmunity, state0, t)
 
-# normalize vector lengths by the hypoteneuse
-hypo_len = (np.hypot(dI_dt,dS_dt))
-hypo_len[hypo_len==0] = 1.0
-dI_dt /= hypo_len
-dS_dt /= hypo_len
+I_nullcline = get_nullclines()[1]
+S_nullcline = get_nullclines()[0]
 
-# plot phase space diagram
-fig, ax = plt.subplots(figsize=(8, 8))
-ax.quiver(I_grid, S_grid, dI_dt, dS_dt, scale = 100, color='#440154')
-ax.plot(I_range, get_nullclines(S_range, I_range)[1]*np.ones(100), linewidth = 3, label='I-nullcline', color='#5ec962')
-ax.plot(get_nullclines(S_range, I_range)[0]*np.ones(100), S_range, linewidth = 3, label='S-nullcline', color='#3b528b')
-ax.set_xlabel('dIdt', fontsize =15)
-ax.set_ylabel('dSdt', fontsize =15)
-ax.set_xlim(0, 100)
-ax.set_ylim(0, 100)
-ax.legend()
+plt.plot(t, Rt(N, state[:,0], state[:,1]), c='#77dd77', linewidth = 3, label = 'Recovered')
+plt.plot(t, state[:, 0], c='#ff6961', linewidth = 3, label = 'Infected')
+plt.plot(t, state[:, 1], c='#7b519d', linewidth = 3, label = 'Susceptible')
+plt.plot(t, I_nullcline*np.ones(1000), c='#5B2C6F', linestyle = '--', linewidth = 2, label='I nullcline')
+plt.plot(t, S_nullcline*np.ones(1000), c='#953732', linestyle = '--', linewidth = 2, label='S nullcline')
+plt.legend(fontsize = 10, loc = 'upper right')
+plt.xlabel('Time', fontsize =15)
+plt.ylabel('Individuals', fontsize =15)
 plt.show()
 
 
 
 
 
-
-import sympy as sym
-
-# Define symbols
-I, S, alpha, tau_inf, tau_imm, N = sym.symbols('I S alpha tau_inf tau_imm N')
-
-# Define the equations
-eq1 = alpha * I * S - I / tau_inf
-eq2 = -alpha * I * S + (N - I - S) / tau_imm
-
-# Solve for I_dot = 0 and S_dot = 0
-sol = sym.solve((eq1, eq2), (I, S))
-
-# Print the solutions
-print(sol)
