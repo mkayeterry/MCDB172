@@ -1,0 +1,38 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# define parameters
+alpha = 0.4
+tau_inf = 0.1
+tau_imm = 3
+N = 100
+
+# nullcline function
+def get_nullclines(S, I):
+    I_nullcline = 1 / (tau_inf * alpha * S)
+    S_nullcline = (N - I) / (tau_imm * alpha)
+    return (S_nullcline, I_nullcline)
+
+# define axis ranges
+I_range = np.arange(0, 100)
+S_range = np.arange(0, 100)
+
+# meshgrid for phase diagram
+I_grid, S_grid = np.meshgrid(I_range, S_range)
+
+# calculate derivatives
+dI_dt = alpha * I_grid * S_grid - (I_grid / tau_inf)
+R = (N - I_grid - S_grid)
+dS_dt = -alpha * I_grid * S_grid + R / tau_imm
+
+# plot phase space diagram
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.quiver(I_grid, S_grid, dI_dt, dS_dt, color='#440154')
+ax.plot(I_range, get_nullclines(S_range, I_range)[1], linewidth = 5, label='I-nullcline', color='#5ec962')
+ax.plot(I_range, get_nullclines(S_range, I_range)[0], linewidth = 5, label='S-nullcline', color='#3b528b')
+ax.set_xlabel('dIdt', fontsize =15)
+ax.set_ylabel('dSdt', fontsize =15)
+ax.set_xlim(0, 100)
+ax.set_ylim(0, 100)
+ax.legend()
+plt.show()
