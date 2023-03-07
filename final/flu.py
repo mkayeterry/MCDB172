@@ -31,6 +31,7 @@ gammaAV = 146.2
 aA = 0.043
 r = 3e-5
 
+
 # standard behavior
 V0 = 0.01
 H0 = 1
@@ -43,12 +44,12 @@ P0 = 1
 A0 = 1
 S0 = 0.1
 
-
 def deriv_std(state, t):
     V, H, I, M, F, R, E, P, A, S = state
+    D = 1 - H - R - I
 
     dVdt = (gammaV * I) - (gammaVA * S * A * V) - (gammaVH * H * V) - (alphaV * V) - ((aV1 * V)/(1 + (aV2 * V)))
-    dHdt = ((bHD * D) * (H + R)) + (R * R) - (gammaHV * V * H) - (bHF * F * H)
+    dHdt = ((bHD * D) * (H + R)) + (aR * R) - (gammaHV * V * H) - (bHF * F * H)
     dIdt = (gammaHV * V * H) - (bIE * E * I) - (aI * I)
     dMdt = (((bMD * D) + (bMV * V)) * (1 - M)) - (aM * M)
     dFdt = (bF * M) + (cF * I) - (bFH * H * F) - (aF * F)
@@ -60,81 +61,48 @@ def deriv_std(state, t):
 
     return np.array([dVdt, dHdt, dIdt, dMdt, dFdt, dRdt, dEdt, dPdt, dAdt, dSdt])
 
-t = np.linspace(0, 15, 100)
+
+t = np.linspace(0, 15, 1000)
 
 state0 = [V0, H0, I0, M0, F0, R0, E0, P0, A0, S0]
 
 state = odeint(deriv_std, state0, t)
 
 V, H, I, M, F, R, E, P, A, S = state.T
+
 D = 1 - H - R - I
 
+# Figure 3 a and b
+V0_lst = [0.001, 0.00227, 0.01, 0.1, 200]
+V_lst = []
+D_lst = []
 
-# Create a figure with 5 rows and 2 columns of subplots
-fig, axes = plt.subplots(nrows=4, ncols=3, figsize=(5, 10))
-fig.set_figwidth(17)
+for i in V0_lst:
 
-# Plot each variable on a separate subplot
-axes[0, 0].plot(t, V)
-axes[0, 0].set_xlabel('Days', fontsize = 13)
-axes[0, 0].set_ylabel('V', fontsize = 13)
+    state0 = [i, H0, I0, M0, F0, R0, E0, P0, A0, S0]
+    state = odeint(deriv_std, state0, t)
 
-axes[0, 1].plot(t, H)
-axes[0, 1].set_xlabel('Days', fontsize = 13)
-axes[0, 1].set_ylabel('H', fontsize = 13)
+    V_lst.append(state.T[0])
 
-axes[0, 2].plot(t, I)
-axes[0, 2].set_xlabel('Days', fontsize = 13)
-axes[0, 2].set_ylabel('I', fontsize = 13)
-
-axes[1, 0].plot(t, M)
-axes[1, 0].set_xlabel('Days', fontsize = 13)
-axes[1, 0].set_ylabel('M', fontsize = 13)
-
-axes[1, 1].plot(t, F)
-axes[1, 1].set_xlabel('Days', fontsize = 13)
-axes[1, 1].set_ylabel('F', fontsize = 13)
-
-axes[1, 2].plot(t, R)
-axes[1, 2].set_xlabel('Days', fontsize = 13)
-axes[1, 2].set_ylabel('R', fontsize = 13)
-
-axes[2, 0].plot(t, E)
-axes[2, 0].set_xlabel('Days', fontsize = 13)
-axes[2, 0].set_ylabel('E', fontsize = 13)
-
-axes[2, 1].plot(t, P)
-axes[2, 1].set_xlabel('Days', fontsize = 13)
-axes[2, 1].set_ylabel('P', fontsize = 13)
-
-axes[2, 2].plot(t, A)
-axes[2, 2].set_xlabel('Days', fontsize = 13)
-axes[2, 2].set_ylabel('A', fontsize = 13)
-
-axes[3, 0].plot(t, D)
-axes[3, 0].set_xlabel('Days', fontsize = 13)
-axes[3, 0].set_ylabel('D', fontsize = 13)
-
-axes[3, 1].plot(t, S)
-axes[3, 1].set_xlabel('Days', fontsize = 13)
-axes[3, 1].set_ylabel('S', fontsize = 13)
+    # need help here
+    Dt = D * (V0 ** i)
+    D_lst.append(Dt)
 
 
+plt.plot(t, V_lst[0], label = 'V0 = 0.001')
+plt.plot(t, V_lst[1], label = 'V0 = 0.00227')
+plt.plot(t, V_lst[2], label = 'V0 = 0.01')
+plt.plot(t, V_lst[3], label = 'V0 = 0.1')
+plt.plot(t, V_lst[4], label = 'V0 = 200')
+plt.xlabel('Days', fontsize = 15)
+plt.ylabel('V', fontsize = 15)
+plt.legend()
+plt.show()
 
-t_pad = np.pad(t, (5, 0), 'constant')
-H_pad = np.pad(H, (5, 0), 'constant')
-R_pad = np.pad(R, (5, 0), 'constant')
-I_pad = np.pad(I, (5, 0), 'constant')
-
-axes[3, 2].plot(t_pad, H_pad, color = 'blue')
-axes[3, 2].plot(t_pad, R_pad, color = 'green')
-axes[3, 2].plot(t_pad, I_pad*500, color = 'red')
-axes[3, 2].plot(t_pad, np.zeros(105), color = 'black')
-axes[3, 2].set_xlabel('Days', fontsize = 13)
-axes[3, 2].set_ylabel('Cell Proportions', fontsize = 13)
-
-# Add some space between the subplots
-fig.tight_layout()
-
-# Show the figure
+plt.plot(t, D_lst[2], label = 'V0 = 0.001')
+plt.plot(t, D_lst[3], label = 'V0 = 0.00227')
+plt.plot(t, D_lst[4], label = 'V0 = 0.01')
+plt.xlabel('Days', fontsize = 15)
+plt.ylabel('D', fontsize = 15)
+plt.legend()
 plt.show()
