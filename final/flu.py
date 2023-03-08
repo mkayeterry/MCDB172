@@ -72,37 +72,99 @@ V, H, I, M, F, R, E, P, A, S = state.T
 
 D = 1 - H - R - I
 
-# Figure 3 a and b
+
+# Figure 3 b
 V0_lst = [0.001, 0.00227, 0.01, 0.1, 200]
 V_lst = []
 D_lst = []
 
-for i in V0_lst:
-
-    state0 = [i, H0, I0, M0, F0, R0, E0, P0, A0, S0]
+for i in range(len(V0_lst)):
+    state0 = [V0_lst[i], H0, I0, M0, F0, R0, E0, P0, A0, S0]
     state = odeint(deriv_std, state0, t)
 
-    V_lst.append(state.T[0])
+    V = state[:, 0]
+    H = state[:, 1]
+    I = state[:, 2]
+    R = state[:, 5]
 
-    # need help here
-    Dt = D * (V0 ** i)
-    D_lst.append(Dt)
+    D = 1 - H - R - I
+    D_V = D * V
+
+    V_lst.append(V)
+    D_lst.append(D_V)
 
 
-plt.plot(t, V_lst[0], label = 'V0 = 0.001')
-plt.plot(t, V_lst[1], label = 'V0 = 0.00227')
-plt.plot(t, V_lst[2], label = 'V0 = 0.01')
-plt.plot(t, V_lst[3], label = 'V0 = 0.1')
-plt.plot(t, V_lst[4], label = 'V0 = 200')
-plt.xlabel('Days', fontsize = 15)
-plt.ylabel('V', fontsize = 15)
+plt.figure(figsize=(8,6))
+for i in range(len(V0_lst)):
+    plt.plot(t, V_lst[i], label='V0 = {}'.format(V0_lst[i]))
+plt.xlabel('Days', fontsize=15)
+plt.ylabel('V', fontsize=15)
 plt.legend()
 plt.show()
 
-plt.plot(t, D_lst[2], label = 'V0 = 0.001')
-plt.plot(t, D_lst[3], label = 'V0 = 0.00227')
-plt.plot(t, D_lst[4], label = 'V0 = 0.01')
-plt.xlabel('Days', fontsize = 15)
-plt.ylabel('D', fontsize = 15)
+
+plt.figure(figsize=(8,6))
+for i in range(2, len(V0_lst)):
+    plt.plot(t, D_lst[i], label='V0 = {}'.format(V0_lst[i]))
+plt.xlabel('Days', fontsize=15)
+plt.ylabel('D', fontsize=15)
 plt.legend()
 plt.show()
+
+# Phase diagram
+V_max = 1.3e10
+D_max = 36
+V1 = V_lst[1]
+V2 = V_lst[2]
+V3 = V_lst[3]
+D1 = D_lst[1]
+D2 = D_lst[2]
+D3 = D_lst[3]
+
+
+xlim = [10e-7, 10e2] # log D range
+ylim = [0, 10] # log V range
+
+npoints = 20
+
+s1 = np.logspace(xlim[0], xlim[1], npoints)
+s2 = np.logspace(ylim[0], ylim[1], npoints)
+
+S1, S2 = np.meshgrid(s1, s2)
+
+q1, p1 = np.zeros(S1.shape), np.zeros(S2.shape)
+# q2, p2 = np.zeros(S1.shape), np.zeros(S2.shape)
+# q3, p3 = np.zeros(S1.shape), np.zeros(S2.shape)
+
+NI, NJ = S1.shape
+
+# plotting phase diagrams
+for i in range(NI):
+    for j in range(NJ):
+        V = S2[i, j]
+        D = S1[i, j]
+
+???
+
+# plot quivers for each section of the phase diagram
+fig, ax = plt.subplots(figsize=(8, 8))
+
+# extreme disease section
+ax.quiver(np.log10(S1[:, :]), np.log10(S2[:, :]), p1[:, :], q1[:, :], color='red', alpha=0.5, scale=5)
+# # typical disease section
+# ax.quiver(np.log10(S1[:, :]), np.log10(S2[:, :]), p2[:, :], q2[:, :], color='blue', alpha=0.5, scale=5)
+# # healthy section
+# ax.quiver(np.log10(S1[:, :]), np.log10(S2[:, :]), p3[:, :], q3[:, :], color='green', alpha=0.5, scale=5)
+
+# plot trajectory lines
+plt.plot(np.log10(D_lst[1]), np.log10(V_lst[1]), color='black')
+# plt.plot(np.log10(D_lst[2]), np.log10(V_lst[2]), color='black')
+# plt.plot(np.log10(D_lst[3]), np.log10(V_lst[3]), color='black')
+
+# add labels and legend
+plt.xlabel('log(D)', fontsize=15)
+plt.ylabel('log(V)', fontsize=15)
+plt.legend(['V0 = 0.00227', 'V0 = 0.01', 'V0 = 0.1', 'Thresholds: V1=0.00227, V2=0.1'], fontsize=12)
+
+plt.show()
+
