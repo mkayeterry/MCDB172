@@ -121,50 +121,37 @@ D1 = D_lst[1]
 D2 = D_lst[2]
 D3 = D_lst[3]
 
+# Define the limits of the x and y axes
+xlim = [10e-7, 1]
+ylim = [10e-7, 100]
 
-xlim = [10e-7, 10e2] # log D range
-ylim = [0, 10] # log V range
+# Choose the number of points in the grid
+npoints = 30
 
-npoints = 20
+# Set up the meshgrid function for evaluating the dynamics at many states
+x = np.linspace(xlim[0], xlim[1], npoints)
+y = np.linspace(ylim[0], ylim[1], npoints)
+X, Y = np.meshgrid(x, y)
 
-s1 = np.logspace(xlim[0], xlim[1], npoints)
-s2 = np.logspace(ylim[0], ylim[1], npoints)
+# Initialize the arrays for the x- and y-components of the vector field
+u, v = np.zeros(X.shape), np.zeros(Y.shape)
 
-S1, S2 = np.meshgrid(s1, s2)
+# Loop over each point in the grid to calculate the dynamics
+NJ, NK = X.shape
+for j in range(NJ):
+    for k in range(NK):
+        state_jk = [X[j, k], Y[j, k]]
+        dstate_dt = deriv_std(state_jk, t)
 
-q1, p1 = np.zeros(S1.shape), np.zeros(S2.shape)
-# q2, p2 = np.zeros(S1.shape), np.zeros(S2.shape)
-# q3, p3 = np.zeros(S1.shape), np.zeros(S2.shape)
+        # Extract the x- and y-components of the dynamics
+        u[j, k] = dstate_dt[0]
+        v[j, k] = dstate_dt[1]
 
-NI, NJ = S1.shape
+# Normalize vector lengths by the hypotenuse
+M = (np.hypot(u, v))
+M[M == 0] = 1.
+u /= M
+v /= M
 
-# plotting phase diagrams
-for i in range(NI):
-    for j in range(NJ):
-        V = S2[i, j]
-        D = S1[i, j]
-
-???
-
-# plot quivers for each section of the phase diagram
-fig, ax = plt.subplots(figsize=(8, 8))
-
-# extreme disease section
-ax.quiver(np.log10(S1[:, :]), np.log10(S2[:, :]), p1[:, :], q1[:, :], color='red', alpha=0.5, scale=5)
-# # typical disease section
-# ax.quiver(np.log10(S1[:, :]), np.log10(S2[:, :]), p2[:, :], q2[:, :], color='blue', alpha=0.5, scale=5)
-# # healthy section
-# ax.quiver(np.log10(S1[:, :]), np.log10(S2[:, :]), p3[:, :], q3[:, :], color='green', alpha=0.5, scale=5)
-
-# plot trajectory lines
-plt.plot(np.log10(D_lst[1]), np.log10(V_lst[1]), color='black')
-# plt.plot(np.log10(D_lst[2]), np.log10(V_lst[2]), color='black')
-# plt.plot(np.log10(D_lst[3]), np.log10(V_lst[3]), color='black')
-
-# add labels and legend
-plt.xlabel('log(D)', fontsize=15)
-plt.ylabel('log(V)', fontsize=15)
-plt.legend(['V0 = 0.00227', 'V0 = 0.01', 'V0 = 0.1', 'Thresholds: V1=0.00227, V2=0.1'], fontsize=12)
-
-plt.show()
-
+# Plot the vector field using quiver()
+plt.quiver(X, Y, u, v, color='red')
