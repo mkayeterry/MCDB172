@@ -121,37 +121,3 @@ D1 = D_lst[1]
 D2 = D_lst[2]
 D3 = D_lst[3]
 
-# Define the limits of the x and y axes
-xlim = [10e-7, 1]
-ylim = [10e-7, 100]
-
-# Choose the number of points in the grid
-npoints = 30
-
-# Set up the meshgrid function for evaluating the dynamics at many states
-x = np.linspace(xlim[0], xlim[1], npoints)
-y = np.linspace(ylim[0], ylim[1], npoints)
-X, Y = np.meshgrid(x, y)
-
-# Initialize the arrays for the x- and y-components of the vector field
-u, v = np.zeros(X.shape), np.zeros(Y.shape)
-
-# Loop over each point in the grid to calculate the dynamics
-NJ, NK = X.shape
-for j in range(NJ):
-    for k in range(NK):
-        state_jk = [X[j, k], Y[j, k]]
-        dstate_dt = deriv_std(state_jk, t)
-
-        # Extract the x- and y-components of the dynamics
-        u[j, k] = dstate_dt[0]
-        v[j, k] = dstate_dt[1]
-
-# Normalize vector lengths by the hypotenuse
-M = (np.hypot(u, v))
-M[M == 0] = 1.
-u /= M
-v /= M
-
-# Plot the vector field using quiver()
-plt.quiver(X, Y, u, v, color='red')
