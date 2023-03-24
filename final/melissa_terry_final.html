@@ -14623,7 +14623,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <hr />
-<h3 id="Abstract"><strong>Abstract</strong><a class="anchor-link" href="#Abstract">&#182;</a></h3><p>This study utilizes a dynamical model of the human immune response to influenza A virus infection developed by *<strong>Hancioglu et al.</strong>* to investigate how variation in immune response affects disease severity. The study aims to determine the level of cellular resistance at which disease becomes asymptomatic by systematically varying the level of resistant cells and analyzing the resulting disease outcomes using Python simulations. The goal of the study is to provide insight into the immune mechanisms that underlie disease progression and identify potential targets for intervention, particularly in the design and implementation of effective vaccination strategies. By exploring the complex dynamics of the host-pathogen interaction, this approach can be applied to a range of infectious diseases, offering a powerful tool for understanding disease transmission and control. <br /></p>
+<h3 id="Abstract"><strong>Abstract</strong><a class="anchor-link" href="#Abstract">&#182;</a></h3><p>This study utilizes a dynamical model of the human immune response to influenza A virus infection developed by <em>Hancioglu et al.</em> to investigate how variation in immune response affects disease severity. The study aims to determine the level of cellular resistance at which disease becomes asymptomatic by systematically varying the level of resistant cells and analyzing the resulting disease outcomes using Python simulations. The goal of the study is to provide insight into the immune mechanisms that underlie disease progression and identify potential targets for intervention, particularly in the design and implementation of effective vaccination strategies. By exploring the complex dynamics of the host-pathogen interaction, this approach can be applied to a range of infectious diseases, offering a powerful tool for understanding disease transmission and control. <br /></p>
+<br />
 <hr />
 
 </div>
@@ -14636,8 +14637,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Introduction"><strong>Introduction</strong><a class="anchor-link" href="#Introduction">&#182;</a></h3><p>(500-700 words) Introduce the main ideas, give background on the problem, and discuss why your 
-experiment is significant. Identify the BIG QUESTION.</p>
+<h3 id="1.-Introduction"><strong>1. Introduction</strong><a class="anchor-link" href="#1.-Introduction">&#182;</a></h3><p>Influenza A virus—of the family <em>Orthomyxoviridae</em>—continues to pose a serious threat to public health, causing seasonal epidemics that result in over 650,000 deaths per year (Lee &amp; Ryu, 2021). Influenza A virus (IAV) is a single stranded, negative sense RNA virus—class V of the Baltimore classification system. IAV is of particular interest, as it is known to undergo antigenic shifts and drifts, where its surface glycoproteins, hemagglutinin, and neuraminidase undergo periodic mutations (Moghadami, 2016). This constant antigenic evolution is due to the segmented nature of its genome, which makes it highly susceptible to genetic reassortment and allows the virus to evade host immune responses. Such genetic reassortment additionally enables animal and human strains to converge and circulate, resulting in intermittent pandemics causing morbidity, mortality, and economic disruption at a global level (Hancioglu et al., 2007). The significant variation in IAV strains from one season to another has made it difficult to develop effective strategies for prevention and control. To address this issue, it is essential to understand the complex dynamics between the virus and the human immune response.</p>
+<blockquote>
+</blockquote>
+<p>In recent years, mathematical models have become indispensable in studying the dynamics of infectious disease transmission at both the cellular and population levels. At the cellular level, such models allow for the prediction of disease severity and the efficacy of interventions. Among these models, dynamical systems provide a means of investigating the complex mechanisms that underlie host-pathogen interactions. By capturing the temporal changes in the host and pathogen populations, these models offer insight into the potential impact of intervention—enabling the development of targeted strategies for disease control and damage reduction. This study utilizes a system of ordinary differential equations which together model the human immune response to IAV infection. The immune response to viral infection is complex, and it is important to note that the modulation of resistant cells presented here do not wholly encompass the complexity of the human immune system and may not reflect the full range of immunological responses. Nonetheless, the model provides a useful framework for exploring how variation in immune response affects disease outcomes and identifying potential targets for intervention. Further experimentation presented in this study aims to shift focus to effectiveness of intervention, and thresholds necessary for reduced expression of disease.</p>
+<blockquote>
+</blockquote>
 
 </div>
 </div>
@@ -14649,10 +14654,260 @@ experiment is significant. Identify the BIG QUESTION.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Methods-&amp;-Results"><strong>Methods &amp; Results</strong><a class="anchor-link" href="#Methods-&amp;-Results">&#182;</a></h3><p>(600-1200 words)  Show the details of you model, equations, parameters, lattice, results. Justify why 
-you made certain decision. Explain what the outcomes of your experiments are and include figures with captions.  Add an 
-additional computational experiment here for every member of your group. (If you have a large group exceeding the word 
-limit is ok, but not necessary (good scientific communication is concise))</p>
+<h3 id="2.-Methods-&amp;-Results"><strong>2. Methods &amp; Results</strong><a class="anchor-link" href="#2.-Methods-&amp;-Results">&#182;</a></h3><br />
+<p><em>2.1 Dynamical Model and Variables</em></p>
+<p>The simulations presented in this paper utilize a system of 10 ordinary differential equations (Table 1) from <em>Hancioglu et al.</em>, which represents the adaptive and innate immune response to infection via the influenza A virus (IAV). The intent of the model presented in this paper is to simulate a system that has had exposure to a similar IAV strain through vaccination, prior to infection. In order to do so, the model was first run under standard conditions (e.g. a healthy, unvaccinated host that has not been exposed to IAV on day zero) to ensure that the system of equations accurately reflects the course of infection.</p>
+<br />
+<p><strong>Table 1</strong>
+Variable Descriptions from <em>Hancioglu et al.</em></p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:left">Variable</th>
+  <th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left">V</td>
+  <td style="text-align:left">Viral load per epithelial cell</td>
+</tr>
+<tr>
+  <td style="text-align:left">H</td>
+  <td style="text-align:left">Proportion of healthy cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">I</td>
+  <td style="text-align:left">Proportion of infected cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">M</td>
+  <td style="text-align:left">Activated antigen presenting cells per homeostatic level</td>
+</tr>
+<tr>
+  <td style="text-align:left">F</td>
+  <td style="text-align:left">Interferons per homeostatic level of macrophages</td>
+</tr>
+<tr>
+  <td style="text-align:left">R</td>
+  <td style="text-align:left">Proportion of resistant cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">E</td>
+  <td style="text-align:left">Effector cells per homeostatic level</td>
+</tr>
+<tr>
+  <td style="text-align:left">P</td>
+  <td style="text-align:left">Plasma cells per homeostatic level</td>
+</tr>
+<tr>
+  <td style="text-align:left">A</td>
+  <td style="text-align:left">Antibodies per homeostatic level</td>
+</tr>
+<tr>
+  <td style="text-align:left">S</td>
+  <td style="text-align:left">Antigenic distance</td>
+</tr>
+</tbody>
+</table>
+<br />
+<p>In the following system, $V$ corresponds to the overall concentration of the virus per epithelial cell, and under standard conditions is assumed to be 0.01. Variable $H$ serves to indicate the proportion of healthy cells in the system, and has an initial value of 1 (e.g. 100% of cells are healthy). Healthy cells are defined here as cells that are neither infected nor resistant to the virus. Conversely, infected cells $I$ are those that have been exposed to the virus, and therefore have an initial value of zero. $M$, $F$, and $R$ represent cells that have some immunological response to viral exposure, and are therefore also set to zero under standard conditions. Immunological systems in place prior to viral exposure are represented by $E$, $P$, and $A$, with initial values of 1 under standard conditions. Antigenic distance, represented by $S$, is predicted to be 0.1 under standard conditions, assuming exposure to previous IAV strains. Of particular interest in this experiment are variables $H$, $M$, $F$, and $R$, as modulations of these variables away from standard conditions allow for the simulation of infection in a host that has been vaccinated. The system of equations is formulated as follows, and represents the rate of change per variable during viral infection:</p>
+<br />
+<p>(1) $dVdt = \gamma_{V}I - \gamma_{VA}SAV - \gamma_{VH}HV - \alpha_{V}V - \frac{a_{V1}V}{1 + a_{V2}V}$</p>
+<br />
+<p>(2) $dHdt = (b_{HD}D(H + R)) + (a_{R}R) - (\gamma_{HV}VH) - (b_{HF}FH)$</p>
+<br />
+<p>(3) $dIdt = (\gamma_{HV}VH) - (b_{IE}EI) - (a_{I}I)$</p>
+<br />
+<p>(4) $dMdt = (((b_{MD}D) + (b_{MV}V)) * (1 - M)) - (a_{M}M)$</p>
+<br />
+<p>(5) $dFdt = (b_{F}M) + (c_{F}I) - (b_{FH}HF) - (a_{F}F)$</p>
+<br />
+<p>(6) $dRdt = (b_{HF}FH) - (a_{R}R)$</p>
+<br />
+<p>(7) $dEdt = (b_{EM}ME) - (b_{EI}IE) + (a_{E}(1 - E))$</p>
+<br />
+<p>(8) $dPdt = (b_{PM}MP) + (a_{P}(1 - P))$</p>
+<br />
+<p>(9) $dAdt = (b_{A}P) - (\gamma{AV}SAV) - (a_{A}A)$</p>
+<br />
+<p>(10) $dSdt = rP(1 - S)$</p>
+<br />
+<p><em>2.2 Parameters</em></p>
+<p>All parameters for the dynamical system were estimated in <em>Hancioglu et al.</em>, and remain unchanged for the duration of this experiment. Under standard conditions, parameters for the system are as follows:</p>
+<p><strong>Table 2</strong> <br />
+Parameter Descriptions and Values for standard conditions from <em>Hancioglu et al.</em></p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:left">Parameter</th>
+  <th style="text-align:center">Value</th>
+  <th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left">$\gamma_{V}$</td>
+  <td style="text-align:center">510</td>
+  <td style="text-align:left">Rate constant of influenza A virus (IAV) particles secretion per infected epithelial cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$\gamma_{VA}$</td>
+  <td style="text-align:center">619.2</td>
+  <td style="text-align:left">Rate constant of neutralization of IAV by antibodies</td>
+</tr>
+<tr>
+  <td style="text-align:left">$\gamma_{VH}$</td>
+  <td style="text-align:center">1.02</td>
+  <td style="text-align:left">Rate constant of adsorption of IAV by infected epithelial cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$alpha_{V}$</td>
+  <td style="text-align:center">1.7</td>
+  <td style="text-align:left">Rate constant of nonspecific IAV removal</td>
+</tr>
+<tr>
+  <td style="text-align:left">$a_{V1}$</td>
+  <td style="text-align:center">100</td>
+  <td style="text-align:left">Rate constant of nonspecific IAV removal</td>
+</tr>
+<tr>
+  <td style="text-align:left">$a_{V2}$</td>
+  <td style="text-align:center">23000</td>
+  <td style="text-align:left">Rate constant of nonspecific IAV removal</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{HD}$</td>
+  <td style="text-align:center">4</td>
+  <td style="text-align:left">Rate constant of regeneration of epithelial cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$a_{R}$</td>
+  <td style="text-align:center">1</td>
+  <td style="text-align:left">Rate constant of epithelial cells’ virus resistance state decay</td>
+</tr>
+<tr>
+  <td style="text-align:left">$\gamma_{HV}$</td>
+  <td style="text-align:center">0.34</td>
+  <td style="text-align:left">Rate constant of epithelial cells infected by IAV</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{HF}$</td>
+  <td style="text-align:center">0.01</td>
+  <td style="text-align:left">Rate constant of epithelial cells’ virus resistant state induction</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{IE}$</td>
+  <td style="text-align:center">0.066</td>
+  <td style="text-align:left">Rate constant of infected epithelial cells that CTL damage</td>
+</tr>
+<tr>
+  <td style="text-align:left">$a_{I}$</td>
+  <td style="text-align:center">1.5</td>
+  <td style="text-align:left">Rate constant of infected epithelial cells damage by cytopathicity of IAV</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{MD}$</td>
+  <td style="text-align:center">1</td>
+  <td style="text-align:left">Rate constant of stimulation of antigen presenting cells by dead cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{MV}$</td>
+  <td style="text-align:center">0.0037</td>
+  <td style="text-align:left">Rate constant of stimulation of antigen presenting cells by virus particles</td>
+</tr>
+<tr>
+  <td style="text-align:left">$a_{M}$</td>
+  <td style="text-align:center">1</td>
+  <td style="text-align:left">Rate constant of stimulated state loss of antigen presenting cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{F}$</td>
+  <td style="text-align:center">250000</td>
+  <td style="text-align:left">Interferon (IFN) production rate per APC</td>
+</tr>
+<tr>
+  <td style="text-align:left">$c_{F}$</td>
+  <td style="text-align:center">2000</td>
+  <td style="text-align:left">Interferon (IFN) production rate per infected cell</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{FH}$</td>
+  <td style="text-align:center">17</td>
+  <td style="text-align:left">Rate constant of epithelial cells that IFN binds</td>
+</tr>
+<tr>
+  <td style="text-align:left">$a_{F}$</td>
+  <td style="text-align:center">8</td>
+  <td style="text-align:left">Rate constant of IFN’s natural decay</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{EM}$</td>
+  <td style="text-align:center">8.8</td>
+  <td style="text-align:left">Rate constant of stimulation of effector cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{EI}$</td>
+  <td style="text-align:center">2.72</td>
+  <td style="text-align:left">Rate constant of death of effectors by lytic interactions with infected epithelial cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$a_{E}$</td>
+  <td style="text-align:center">0.4</td>
+  <td style="text-align:left">Rate constant of natural death of effector cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{PM}$</td>
+  <td style="text-align:center">11.5</td>
+  <td style="text-align:left">Rate constant of plasma cells production</td>
+</tr>
+<tr>
+  <td style="text-align:left">$a_{P}$</td>
+  <td style="text-align:center">0.4</td>
+  <td style="text-align:left">Rate constant of natural death of plasma cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$b_{A}$</td>
+  <td style="text-align:center">0.043</td>
+  <td style="text-align:left">Antibody production rate per plasma cells</td>
+</tr>
+<tr>
+  <td style="text-align:left">$\gamma_{AV}$</td>
+  <td style="text-align:center">146.2</td>
+  <td style="text-align:left">Rate constant of antibodies which binds to IAV</td>
+</tr>
+<tr>
+  <td style="text-align:left">$a_{A}$</td>
+  <td style="text-align:center">0.043</td>
+  <td style="text-align:left">Rate constant of natural death of antibodies</td>
+</tr>
+<tr>
+  <td style="text-align:left">$r$</td>
+  <td style="text-align:center">3e-5</td>
+  <td style="text-align:left">Rate constant for S variable</td>
+</tr>
+</tbody>
+</table>
+<br />
+<p><em>2.3 Experimental Design</em></p>
+<p>All dynamical simulations presented in this paper are simulated using Python programming language, and depend on the scientific computing libraries Scipy ODEint for numerical integration, Numpy for data manipulation, as well as Matplotlib for graphical analysis.</p>
+<blockquote>
+</blockquote>
+<p>The aim of this experiment is to examine how prior vaccination affects the progression of IAV infection. We first conducted the simulation under standard conditions, with a time course of 15 days and an interval of 1000 time points. Figure 1 illustrates the time courses of each variable, confirming that the simulation produces the anticipated course of IAV infection. Additionally, the figure displays the cumulative proportion of healthy, dead, infected, and resistant epithelial cell types, providing a comprehensive view of the infection's effects.</p>
+<br />
+<p><img src="figure1.png" alt="" />
+<strong>Figure 1.</strong> Time courses of the system variables under standard conditions, plotted over a 15-day time course with 1000 time points. To better illustrate the dynamics of the system, the variables V, F, E, P, and A are plotted on a linear x-axis and a logarithmic y-axis. The cumulative proportion of epithelial cell types is also shown at the bottom right, with healthy cells represented by the space above the blue curve, resistant cells between the blue and green curves, and infected cells between the green and red curves. Dead cells are represented by the area beneath the red curve. The simulation results confirm the anticipated course of IAV infection and provide a detailed overview of the infection's impact on different cell types.</p>
+<br />
+<p>In order to further establish the baseline for the system variables under standard conditions, the time courses for various levels of initial viral load were plotted. Figure 2a displays the time course of viral load for different $V_o$ values ranging from 0.001 to 200, with $V_1$ = 0.00227 and $V_2$ = 0.1 representing the thresholds for typical disease and severe disease, respectively. In addition, Figure 2b illustrates the resulting cellular damage during the course of viral infection, while Figure 2c presents a phase diagram to depict the dependence on initial viral load. It should be noted figures 2a and 2c were plotted utilizing logarithmic scales for enhanced visual clarity.</p>
+<br />
+<p><img src="figure2A.png" alt="" />
+<img src="figure2B.png" alt="" />
+<strong>Figure 2.</strong> Time courses of viral load (a) and cellular damage (b) for $V_o$ values ranging from 0.0010 to 200. (c) Phase diagram of log V vs log D, yielding a maximum viral load and maximum cell damage of $1.3x10^{10}$ particles per mL and 36%, respectively.</p>
+<br />
+<p>To simulate the conditions of vaccination, a time course of cellular damage under different initial antigenic distances was plotted. Antigenic distance indicates the compatibility between antibodies and the viral strain, with a value of 1 representing the highest affinity. The variable $S_o$ represents the host's immune memory, and simulating its manipulation allows us to establish a baseline for further manipulation of initial values to simulate different vaccination levels.</p>
+<br />
+<p><img src="figure3.png" alt="" />
+<strong>Figure 2.</strong> Time course of cellular damage for $S_o$ values ranging from 0 to 0.0125. The orange curve represents antigenic distance under standard conditions, while manipulating its initial values results in delayed or expedited onset of cellular damage.</p>
 
 </div>
 </div>
@@ -14679,9 +14934,17 @@ Future directions?</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Works-Cited"><strong>Works Cited</strong><a class="anchor-link" href="#Works-Cited">&#182;</a></h3><p>Hancioglu, B., Swigon, D., &amp; Clermont, G. (2007). A dynamical model of human immune response to influenza A virus infection.</p>
+<h3 id="Works-Cited"><strong>Works Cited</strong><a class="anchor-link" href="#Works-Cited">&#182;</a></h3><p>Hancioglu, B., Swigon, D., &amp; Clermont, G. (2007). <em>A dynamical model of human immune response</em></p>
 <blockquote>
-<p><em>Journal of Theoretical Biology, 246</em>(1), 70–86. <a href="https://doi.org/10.1016/j.jtbi.2006.12.015">https://doi.org/10.1016/j.jtbi.2006.12.015</a></p>
+<p><em>to influenza A virus infection</em>. Journal of Theoretical Biology, 246(1), 70–86.</p>
+</blockquote>
+<p>Lee, S. J., &amp; Ryu, J.-H. (2021). <em>Influenza viruses: Innate immunity and mrna vaccines</em>. Frontiers in</p>
+<blockquote>
+<p>Immunology, 12.</p>
+</blockquote>
+<p>Moghadami, M. (2016). <em>A Narrative Review of Influenza: A Seasonal and Pandemic Disease</em>. Iranian</p>
+<blockquote>
+<p>Journal of Medical Sciences, 42, 2 - 13.</p>
 </blockquote>
 
 </div>
