@@ -14637,10 +14637,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="1.-Introduction"><strong>1. Introduction</strong><a class="anchor-link" href="#1.-Introduction">&#182;</a></h3><p>Influenza A virus—of the family <em>Orthomyxoviridae</em>—continues to pose a serious threat to public health, causing seasonal epidemics that result in over 650,000 deaths per year (Lee &amp; Ryu, 2021). Influenza A virus (IAV) is a single stranded, negative sense RNA virus—class V of the Baltimore classification system. IAV is of particular interest, as it is known to undergo antigenic shifts and drifts, where its surface glycoproteins, hemagglutinin, and neuraminidase undergo periodic mutations (Moghadami, 2016). This constant antigenic evolution is due to the segmented nature of its genome, which makes it highly susceptible to genetic reassortment and allows the virus to evade host immune responses. Such genetic reassortment additionally enables animal and human strains to converge and circulate, resulting in intermittent pandemics causing morbidity, mortality, and economic disruption at a global level (Hancioglu et al., 2007). The significant variation in IAV strains from one season to another has made it difficult to develop effective strategies for prevention and control. To address this issue, it is essential to understand the complex dynamics between the virus and the human immune response.</p>
+<h3 id="1.-Introduction"><strong>1. Introduction</strong><a class="anchor-link" href="#1.-Introduction">&#182;</a></h3><p>Influenza A virus—of the family <em>Orthomyxoviridae</em>—continues to present a substantial threat to public health, causing seasonal epidemics that result in over 650,000 deaths per year (Lee &amp; Ryu, 2021). Influenza A virus (IAV) is a single stranded, negative sense RNA virus—class V of the Baltimore classification system. IAV is of particular interest, as it is known to undergo antigenic shifts and drifts, where its surface glycoproteins, hemagglutinin, and neuraminidase undergo periodic mutations (Moghadami, 2016). This constant antigenic evolution is due to the segmented nature of its genome, which makes it highly susceptible to genetic reassortment and allows the virus to evade host immune responses. Such genetic reassortment additionally enables animal and human strains to converge and circulate, resulting in intermittent pandemics causing disruption at a global level (Hancioglu et al., 2007). The significant variation in IAV strains from one season to another has made it difficult to develop effective strategies for prevention and control. To address this issue, it is essential to understand the complex dynamics between the virus and the human immune response.</p>
 <blockquote>
 </blockquote>
-<p>In recent years, mathematical models have become indispensable in studying the dynamics of infectious disease transmission at both the cellular and population levels. At the cellular level, such models allow for the prediction of disease severity and the efficacy of interventions. Among these models, dynamical systems provide a means of investigating the complex mechanisms that underlie host-pathogen interactions. By capturing the temporal changes in the host and pathogen populations, these models offer insight into the potential impact of intervention—enabling the development of targeted strategies for disease control and damage reduction. This study utilizes a system of ordinary differential equations which together model the human immune response to IAV infection. The immune response to viral infection is complex, and it is important to note that the modulation of resistant cells presented here do not wholly encompass the complexity of the human immune system and may not reflect the full range of immunological responses. Nonetheless, the model provides a useful framework for exploring how variation in immune response affects disease outcomes and identifying potential targets for intervention. Further experimentation presented in this study aims to shift focus to effectiveness of intervention, and thresholds necessary for reduced expression of disease.</p>
+<p>In recent years, mathematical models have become indispensable in studying the dynamics of disease transmission at both the cellular and population levels. At the cellular level, such models allow for the prediction of disease severity and the efficacy of interventions. Among these models, dynamical systems provide a means of investigating the complex mechanisms that underpin biological function. That is, in capturing the temporal changes in the cellullar immune response, these models offer insight into the potential impact of intervention—facilitating development of strategies for disease control and damage reduction. This study utilizes a system of ordinary differential equations which together model the human immune response to IAV infection. In reproducing and expanding upon a model by <em>Hancioglu et al.</em>, this study attempts to elucidate the factors most important in disease reduction. The immune response to viral infection is complex, and it is important to note that the modulation of resistant cells presented here do not wholly encompass the complexity of the human immune system and may not reflect the full range of immunological responses. Nonetheless, the model provides a useful framework for exploring how variation in immune response affects disease outcomes and identifying potential targets for intervention. Further experimentation presented in this study aims to shift focus to effectiveness of intervention, and thresholds necessary for reduced expression of disease.</p>
 <blockquote>
 </blockquote>
 
@@ -14656,7 +14656,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="2.-Methods-&amp;-Results"><strong>2. Methods &amp; Results</strong><a class="anchor-link" href="#2.-Methods-&amp;-Results">&#182;</a></h3><br />
 <p><em>2.1 Dynamical Model and Variables</em></p>
-<p>The simulations presented in this paper utilize a system of 10 ordinary differential equations (Table 1) from <em>Hancioglu et al.</em>, which represents the adaptive and innate immune response to infection via the influenza A virus (IAV). The intent of the model presented in this paper is to simulate a system that has had exposure to a similar IAV strain through vaccination, prior to infection. In order to do so, the model was first run under standard conditions (e.g. a healthy, unvaccinated host that has not been exposed to IAV on day zero) to ensure that the system of equations accurately reflects the course of infection.</p>
+<p>The simulations presented in this paper utilize a system of 10 ordinary differential equations from <em>Hancioglu et al.</em>, which represents the adaptive and innate immune response to infection via the influenza A virus (IAV). The intent of the model presented in this paper is to simulate a system that has had exposure to a similar IAV strain through vaccination, prior to infection. In order to do so, the model was first run under standard conditions (e.g. a healthy, unvaccinated host that has not been exposed to IAV on day zero) to ensure that the system of equations accurately reflects the course of infection.</p>
 <br />
 <p><strong>Table 1</strong>
 Variable Descriptions from <em>Hancioglu et al.</em></p>
@@ -14889,31 +14889,31 @@ Parameter Descriptions and Values for standard conditions from <em>Hancioglu et 
 </tbody>
 </table>
 <br />
-<p><em>2.3 Experimental Design</em></p>
+<p><em>2.3 Experimental Design and Results</em></p>
 <p>All dynamical simulations presented in this paper are simulated using Python programming language, and depend on the scientific computing libraries Scipy ODEint for numerical integration, Numpy for data manipulation, as well as Matplotlib for graphical analysis.</p>
 <blockquote>
 </blockquote>
 <p>The aim of this experiment is to examine how prior vaccination affects the progression of IAV infection. We first conducted the simulation under standard conditions, with a time course of 15 days and an interval of 1000 time points. Figure 1 illustrates the time courses of each variable, confirming that the simulation produces the anticipated course of IAV infection. Additionally, the figure displays the cumulative proportion of healthy, dead, infected, and resistant epithelial cell types, providing a comprehensive view of the infection's effects.</p>
 <br />
-<p><img src="figure1.png" alt="" />
+<p style="font-size: 11px;"><img src="figure1.png" alt="" />
 <strong>Figure 1.</strong> Time courses of the system variables under standard conditions, plotted over a 15-day time course with 1000 time points. To better illustrate the dynamics of the system, the variables V, F, E, P, and A are plotted on a linear x-axis and a logarithmic y-axis. The cumulative proportion of epithelial cell types is also shown at the bottom right, with healthy cells represented by the space above the blue curve, resistant cells between the blue and green curves, and infected cells between the green and red curves. Dead cells are represented by the area beneath the red curve. The simulation results confirm the anticipated course of IAV infection and provide a detailed overview of the infection's impact on different cell types.</p>
 <br />
 <p>In order to further establish the baseline for the system variables under standard conditions, the time courses for various levels of initial viral load were plotted. Figure 2a displays the time course of viral load for different $V_o$ values ranging from 0.001 to 200, with $V_1$ = 0.00227 and $V_2$ = 0.1 representing the thresholds for typical disease and severe disease, respectively. In addition, Figure 2b illustrates the resulting cellular damage during the course of viral infection, while Figure 2c presents a phase diagram to depict the dependence on initial viral load. It should be noted figures 2a and 2c were plotted utilizing logarithmic scales for enhanced visual clarity.</p>
 <br />
-<p><img src="figure2A.png" alt="" />
+<p style="font-size: 11px;"><img src="figure2A.png" alt="" />
 <img src="figure2B.png" alt="" />
 <strong>Figure 2.</strong> Time courses of viral load (a) and cellular damage (b) for $V_o$ values ranging from 0.0010 to 200. (c) Phase diagram of log V vs log D, yielding a maximum viral load and maximum cell damage of $1.3x10^{10}$ particles per mL and 36%, respectively.</p>
 <br />
 <p>To simulate the conditions of vaccination, a time course of cellular damage under different initial antigenic distances was plotted. Antigenic distance indicates the compatibility between antibodies and the viral strain, with a value of 1 representing the highest affinity. The variable $S_o$ represents the host's immune memory, and simulating its manipulation allows us to establish a baseline for further manipulation of initial values to simulate different vaccination levels.</p>
 <br />
-<p><img src="figure3.png" alt="" />
-<strong>Figure 3.</strong> Time course of cellular damage for $S_o$ values ranging from 0 to 0.2. The orange curve represents antigenic distance under standard conditions (mild compatability), while manipulating its initial values results in delayed or expedited onset of cellular damage.</p>
+<p style="font-size: 11px;"><img src="figure3.png" alt="" />
+<strong>Figure 3.</strong> Time course of cellular damage for $S_o$ values ranging from 0 to 0.2. The orange curve represents antigenic distance under standard conditions (mild compatibility), while manipulating its initial values results in delayed or expedited onset of cellular damage.</p>
 <br />
 <p>To further investigate the impact of vaccination on the course of disease, we plotted time courses of viral load and cellular damage with varied levels of resistant and healthy initial cell types. Figure 4a and b illustrates the impact of variation in resistant cells. As healthy cells and resistant cells are inversely proportional, a higher initial value for healthy cells (H) leads to a lower initial value for resistant cells (R), and vice versa.</p>
 <br />
-<p><img src="figure4.png" alt="" />
+<p style="font-size: 11px;"><img src="figure4.png" alt="" />
 <strong>Figure 4.</strong>
-Time courses of viral load (a) and cellular damage (b) for $R_o$ values ranging from 0 to 1.</p>
+Time courses of viral load (a) and cellular damage (b) for $R_o$ values ranging from 0 to 1. Note that disease becomes asymptomatic at an $R_o$ value of 0.5.</p>
 
 </div>
 </div>
@@ -14925,10 +14925,14 @@ Time courses of viral load (a) and cellular damage (b) for $R_o$ values ranging 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Discussion"><strong>Discussion</strong><a class="anchor-link" href="#Discussion">&#182;</a></h3><p>(500-700 words)  Provide analytical depth to your results. What do your results mean? How do they relate to 
-other results in the field? How might they inform treatment or intervention measures, what further modifications could be 
-made to your model, where should the scientific community go from here? What are some of the limitations to your study? 
-Future directions?</p>
+<h3 id="Discussion"><strong>Discussion</strong><a class="anchor-link" href="#Discussion">&#182;</a></h3><p>The results of this study offer valuable insights into the progression of influenza A infection (IAV) and the impact of various factors on disease severity, and enables the identification of critical conditions for vaccination efficacy. The computational model presented by <em>Hancioglu et al.</em> was successfully implemented, and the simulation accurately captured the expected course of IAV infection under standard conditions, as demonstrated in Figure 1. The fifth day of infection represented the peak of both viral load and cellular damage under standard conditions, setting a baseline for the simulation of vaccination.</p>
+<p>Figure 2 serves as further confirmation of the model's implementation. The recreation of findings suggests that viral load per epithelial cell is a critical factor in determining the severity of cellular damage during IAV infection. The results demonstrate that cellular damage increases significantly with increased viral load, with damage peaked at 40% under standard conditions. The model was robust to variations in initial conditions, as cellular damage remained at 40% even with initial viral loads less than the maximum. The earlier onset of cellular damage with greater viral load confirms the intuitive understanding of the disease.</p>
+<p>The impact of antigenic distance on disease progression was investigated in Figure 3, serving as the introduction to the impact of vaccination. Antigenic distance represents the affinity between the antibodies and the viral strain, with a value of 1 indicating the highest affinity. The results indicate that an absent antigenic distance (e.g. no recognition for the virus) increases cellular damage. However, for initial antigenic distances greater than zero, the higher the antigenic distance, the later the onset of cellular damage. The disease becomes asymptomatic at an antigenic distance of 0.2, suggesting the importance of the affinity of antibodies for the virus.</p>
+<p>Figure 4 investigated the impact of varying levels of healthy and resistant initial cell types, simulating conditions of vaccination. The inverse proportionality between healthy and resistant cells was implemented, as the higher the initial value for healthy cells, the lower the initial value for resistant cells, and vice versa. The results suggest that a cellular resistance of 50% allows for asymptomatic disease expression, and resistance to the virus delays the onset of viral load.</p>
+<p>These findings begin to investigate implications for the development of effective treatment and intervention measures for IAV infection. The results suggest that reducing the viral load per epithelial cell and increasing the affinity of antibodies for the virus can effectively reduce cellular damage and delay the onset of the disease. More importantly, the results also suggest that increasing the proportion of resistant cells can lead to asymptomatic disease expression.</p>
+<p>One limitation of this study is the lack of variation of parameters. The assumption was made that manipulating initial values will have no impact on inherent disease mechanism rates, which will limit its generalizability to real-world situations.</p>
+<p>Future directions for this research could include investigating the impact of other factors, such as the impact of both antigenic distance and cellular resistance to innate defense mechanisms. Further modifications should be made to the model to improve its accuracy and robustness to variations in initial conditions. In addition, the validation of the model using real-world data could strengthen the reliability of the findings.</p>
+<p>In conclusion, the results of this study provide valuable insights into the factors that influence the severity and progression of IAV infection. The findings provide direction for the development of effective treatment and intervention measures for IAV infection and further investigation could yield executable results.</p>
 
 </div>
 </div>
@@ -14952,18 +14956,6 @@ Future directions?</p>
 <blockquote>
 <p>Journal of Medical Sciences, 42, 2 - 13.</p>
 </blockquote>
-
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Supplemental-Code">Supplemental Code<a class="anchor-link" href="#Supplemental-Code">&#182;</a></h3><p>Provide a well-commented python notebook that can generate every figure in your main article.</p>
 
 </div>
 </div>
